@@ -1,6 +1,6 @@
 ---
 - name: configure system properites
-  hosts: routers
+  hosts: all
   gather_facts: no
 
   tasks:
