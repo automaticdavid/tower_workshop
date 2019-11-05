@@ -1,0 +1,17 @@
+---
+- name: CHANGE CONFIG SET ON IOS
+  hosts: all
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: RUN COMMAND
+      ios_config:
+        lines: "{{ item | default('') }}"
+        save_when: modified
+      when: ansible_network_os == "ios"
+      with_items: "{{ tower_input }}"
+      register: output
+
+    - debug:
+        msg: "{{ output }}"
