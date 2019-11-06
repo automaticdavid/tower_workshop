@@ -53,7 +53,7 @@
    
     - name: get last backup first in list
       set_fact: 
-        backups_files: "{{ backups.files | reverse }}"
+        backups_files: "{{ backups.files | reverse | list }}"
         
     - debug: 
         var: backups_files
