@@ -55,8 +55,8 @@
       set_fact: 
         backups_files: "{{ backups.files | reverse | list }}"
 
-    - name: get the latest backup ID
-      set_stat: 
+    - name: set the latest backup ID
+      set_stats: 
         data:
           backup_id: "{{ datetime }}"
         aggregate: no
