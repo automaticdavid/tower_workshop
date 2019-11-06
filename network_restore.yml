@@ -6,6 +6,7 @@
   tasks:
   
     - name: get backup id to restore 
+      run_once: yes
       set_fact:
         rollback_date: "{{ backup_id }}"
       when: backup_id is defined
