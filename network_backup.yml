@@ -55,6 +55,10 @@
       set_fact: 
         backups_files: "{{ backups.files | reverse | list }}"
 
+    - name: get the latest backup ID
+      set_stat: 
+        backup_id: "{{ datetime }}"
+
     - name: create restore job template
       tower_job_template:
         name: "Network-Restore"
