@@ -57,8 +57,10 @@
 
     - name: get the latest backup ID
       set_stat: 
-        backup_id: "{{ datetime }}"
-
+        data:
+          backup_id: "{{ datetime }}"
+        aggregate: no
+        
     - name: create restore job template
       tower_job_template:
         name: "Network-Restore"
