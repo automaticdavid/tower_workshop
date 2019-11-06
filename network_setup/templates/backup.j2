@@ -8,7 +8,7 @@
       "question_description": "Rollback revision date, which date do you want to revert to?",
       "variable": "rollback_date",
       "choices": [
-{% for file in backups.files %}
+{% for file in backups.files |reverse %}
 {% if loop.last %}
         "{{file.path.split('/')[-1]}}"
 {% else %}
