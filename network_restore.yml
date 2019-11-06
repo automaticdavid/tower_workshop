@@ -4,6 +4,11 @@
   gather_facts: no
 
   tasks:
+  
+    - name: get backup id to restore 
+      set_fact:
+        rollback_date: "{{ backup_id }}"
+      when: backup_id is defined
 
     - name: load restore role
       include_role:
