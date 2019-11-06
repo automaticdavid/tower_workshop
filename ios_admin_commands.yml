@@ -7,10 +7,9 @@
   tasks:
     - name: RUN COMMAND
       ios_config:
-        lines: "{{ item | default('') }}"
+        lines: "{{ tower_input | default('') }}"
         save_when: modified
       when: ansible_network_os == "ios"
-      with_items: "{{ tower_input }}"
       register: output
 
     - debug:
