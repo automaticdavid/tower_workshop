@@ -54,6 +54,9 @@
     - name: get last backup first in list
       set_fact: 
         backups_files: "{{ backups.files | reverse }}"
+        
+    - debug: 
+        var: backups_files
 
     - name: create restore job template
       tower_job_template:
