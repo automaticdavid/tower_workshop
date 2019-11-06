@@ -50,6 +50,10 @@
       register: backups
       run_once: true
       become: yes
+   
+    - name: get last backup first in list
+      set_fact: 
+        backup_files: "{{ backup.files | reverse }}"
 
     - name: create restore job template
       tower_job_template:
