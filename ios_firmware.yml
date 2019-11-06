@@ -1,0 +1,16 @@
+---
+- name: Template for Firmware Upgrade
+  hosts: all
+  gather_facts: no
+
+  tasks:
+
+    - name: load system role
+      debug:
+        msg: "Load Firmware - "
+        
+
+    - name: load system role
+      debug:
+        msg: "Placeholder Action "        
+
