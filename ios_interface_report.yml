@@ -30,7 +30,7 @@
 
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
-        src: intf_reports/
+        src: /intf_reports/
         dest: interfaces_report.md
       delegate_to: localhost
       run_once: yes
