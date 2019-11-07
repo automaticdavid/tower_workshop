@@ -23,17 +23,21 @@
     - name: DISPLAY THE PARSED DATA
       debug:
         var: interface_facts
+        
+    - name: create temporary report directory
+      tempfile:
+        state: directory
+        suffix: intf
+      register: intf
 
     - name: GENERATE REPORT FRAGMENTS
       template:
         src: interface_facts.j2
-        dest: /intf_reports/{{inventory_hostname}}_intf_report.md
-      become: yes
+        dest: {{intf.path}}/{{inventory_hostname}}_intf_report.md
 
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
-        src: /intf_reports/
+        src:  {{intf.path}}
         dest: interfaces_report.md
       delegate_to: localhost
       run_once: yes
-      become: yes
