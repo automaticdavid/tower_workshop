@@ -40,3 +40,6 @@
         dest: interfaces_report.md
       delegate_to: localhost
       run_once: yes
+      
+    - debug: 
+        msg: "GENERATED REPORT\n{{lookup('file', intf.path) }}"
