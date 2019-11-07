@@ -43,3 +43,5 @@
       
     - debug: 
         msg: "GENERATED REPORT\n{{lookup('file', intf.path) }}"
+      delegate_to: localhost
+      run_once: yes
