@@ -26,7 +26,7 @@
     - name: GENERATE REPORT FRAGMENTS
       template:
         src: interface_facts.j2
-        dest: intf_reports/{{inventory_hostname}}_intf_report.md
+        dest: /intf_reports/{{inventory_hostname}}_intf_report.md
 
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
