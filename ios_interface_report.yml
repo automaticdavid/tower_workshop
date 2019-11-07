@@ -37,7 +37,7 @@
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
         src:  "{{intf.path}}"
-        dest: interfaces_report.md
+        dest: "{{intf.path}}/interfaces_report.md"
       delegate_to: localhost
       run_once: yes
       
