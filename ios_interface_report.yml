@@ -33,15 +33,23 @@
       template:
         src: interface_facts.j2
         dest: "{{intf.path}}/{{inventory_hostname}}_intf_report.md"
-
+      
+- name: Email Report
+  hosts: ansible
+  gather_facts: no
+  become: yes
+  tasks:
+ 
+    - name: create /intf directory on control node
+      file:
+        path: /intf
+        state: directory
+        
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
         src:  "{{intf.path}}"
-        dest: "{{intf.path}}/interfaces_report.md"
+        dest: /intf/interfaces_report.md
       delegate_to: localhost
       run_once: yes
-      
-    - debug: 
-        msg: "GENERATED REPORT\n{{lookup('file', intf.path + '/interfaces_report.md') }}"
-      delegate_to: localhost
-      run_once: yes
+        
+
