@@ -6,6 +6,10 @@
   tasks:
     - name: gather router facts
       ios_facts:
+      
+    - name: display interfaces
+      debug: 
+        var: ansible_net_interfaces
 
     - name: display version
       debug:
