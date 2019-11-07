@@ -9,7 +9,8 @@
       
     - name: display interfaces
       debug: 
-        var: ansible_net_interfaces
+        msg: "Interface {{ item.key }} has IP {{ item.value.ipv4.0.address }} / ({{item.value.ipv4.0.subnet }})"
+      loop: "{{ lookup('dict', ansible_net_interfaces) }}"
 
     - name: display version
       debug:
