@@ -1,4 +1,16 @@
 ---
+
+- name: setup control node timestamp
+  hosts: ansible
+  gather_facts: no
+  become: yes
+  tasks:
+
+    - name: create /backup directory on control node
+      file:
+        path: /reports
+        state: directory
+
 - name: GENERATE INTERFACE REPORT
   hosts: cisco
   gather_facts: no
@@ -22,25 +34,18 @@
     - name: DISPLAY THE PARSED DATA
       debug:
         var: interface_facts
-        
-    - name: create temporary report directory
-      tempfile:
-        state: directory
-        suffix: intf
-      register: intf
-      delegate_to: localhost
 
     - name: GENERATE REPORT FRAGMENTS
       template:
         src: interface_facts.j2
-        dest: "{{intf.path}}/{{inventory_hostname}}_intf_report.md"
+        dest: "/reports/{{inventory_hostname}}_intf_report.md"
       delegate_to: localhost
+      become: yes
 
-      
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
-        src:  "{{intf.path}}"
-        dest: "{{intf.path}}/interfaces_report.md"
+        src:  "/reports/"
+        dest: "/reports/interfaces_report.md"
       delegate_to: localhost
       run_once: yes
       
