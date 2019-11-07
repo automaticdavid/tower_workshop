@@ -22,3 +22,15 @@
     - name: DISPLAY THE PARSED DATA
       debug:
         var: interface_facts
+
+    - name: GENERATE REPORT FRAGMENTS
+      template:
+        src: interface_facts.j2
+        dest: intf_reports/{{inventory_hostname}}_intf_report.md
+
+    - name: GENERATE A CONSOLIDATED REPORT
+      assemble:
+        src: intf_reports/
+        dest: interfaces_report.md
+      delegate_to: localhost
+      run_once: yes
