@@ -28,11 +28,14 @@
         state: directory
         suffix: intf
       register: intf
+      delegate_to: localhost
 
     - name: GENERATE REPORT FRAGMENTS
       template:
         src: interface_facts.j2
         dest: "{{intf.path}}/{{inventory_hostname}}_intf_report.md"
+      delegate_to: localhost
+
       
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
