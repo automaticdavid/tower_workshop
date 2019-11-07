@@ -12,6 +12,8 @@
         msg: "Interface {{ item.key }} has IP {{ item.value.ipv4.0.address }} / {{ item.value.ipv4.0.subnet }}"
       when: item.value.ipv4.0.address is defined
       with_dict: "{{ ansible_net_interfaces }}"
+      loop_control:
+        label: "{{ item.key }}"
 
     - name: display version
       debug:
