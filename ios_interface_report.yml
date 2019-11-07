@@ -39,6 +39,7 @@
       template:
         src: interface_facts.j2
         dest: "/reports/{{inventory_hostname}}_intf_report.md"
+      become: yes
 
     - name: GENERATE A CONSOLIDATED REPORT
       assemble:
