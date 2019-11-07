@@ -35,20 +35,3 @@
       debug:
         var: interface_facts
 
-    - name: GENERATE REPORT FRAGMENTS
-      template:
-        src: interface_facts.j2
-        dest: "/reports/{{inventory_hostname}}_intf_report.md"
-      become: yes
-
-    - name: GENERATE A CONSOLIDATED REPORT
-      assemble:
-        src:  "/reports/"
-        dest: "/reports/interfaces_report.md"
-      delegate_to: localhost
-      run_once: yes
-      
-    - debug: 
-        msg: "GENERATED REPORT\n{{lookup('file', intf.path + '/interfaces_report.md') }}"
-      delegate_to: localhost
-      run_once: yes
